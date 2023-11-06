@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import MyIcons from './components/MyIcons'
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import {FaTwitter, FaTumblr, FaQuoteLeft, FaQuoteRight, FaPlusCircle, FaPenNib} from 'react-icons/fa'
 
 
@@ -27,37 +26,29 @@ function App() {
 
   useEffect(() => {
     getNewQuote();
-  }, []); // Empty dependency array runs this effect once on mount
+  }, []);
 
   return (
-    <div>
-{/* 
-      <div id="new-q" onClick={() =>{getNewQuote();changeColor();}}>
-        Next Quote 
-        <div className="arrow">
-          <FaAngleRight />
+    <div>  
+      <div id="wrapper"> 
+      
+        <div id="quote-box">
+        <div id="text"><FaQuoteLeft/> {quote} <FaQuoteRight/></div>
+        <div id="author"><FaPenNib/> {author}</div>
+        <button id="new-quote" onClick={() =>{getNewQuote();changeColor();}}><FaPlusCircle /> New Quote</button>
+        
+        <a
+          id="tweet-quote"
+          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${quote} - ${author}`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {/* <FaTwitter alt="twitter"/> */}
+        <MyIcons color="white"/>
+        </a>
+        <a href="https://timbler.com" id="tumbler-quote"><FaTumblr alt="tumblr"/></a>  
         </div>
-      </div> */}
-      
-    <div id="wrapper"> 
-    
-      <div id="quote-box">
-      <div id="text"><FaQuoteLeft/> {quote} <FaQuoteRight/></div>
-      <div id="author"><FaPenNib/> {author}</div>
-      <button id="new-quote" onClick={() =>{getNewQuote();changeColor();}}><FaPlusCircle /> New Quote</button>
-      
-      <a
-        id="tweet-quote"
-        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${quote} - ${author}`)}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {/* <FaTwitter alt="twitter"/> */}
-      <MyIcons color="white"/>
-      </a>
-      <a href="https://timbler.com" id="tumbler-quote"><FaTumblr alt="tumblr"/></a>  
-      </div>
-    </div> 
+      </div> 
     </div>
   );
 }
